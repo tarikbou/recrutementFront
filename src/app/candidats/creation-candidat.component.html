@@ -1,4 +1,4 @@
-<form #candidatForm="ngForm" (ngSubmit)="saveCandidat(candidatForm)">
+<form #candidatForm="ngForm" (ngSubmit)="saveCandidat()">
 <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">nouveau candidat </h3>
@@ -6,16 +6,16 @@
     <div class="panel-body">
       <div class="form-group">
           <label> nom </label>
-          <input id="nom" name="nom" [(ngModel)]="nom" type="text" class="form-control">
+          <input id="nom" name="nom" [(ngModel)]="candidat.nom" type="text" class="form-control">
       </div>
       <div class="form-group">
           <label> penom </label>
-          <input id="prenom" name="prenom" [(ngModel)]="prenom"  type="text" class="form-control">
+          <input id="prenom" name="prenom" [(ngModel)]="candidat.prenom"  type="text" class="form-control">
       </div>
 
       <div class="form-group">
           <label> adresse </label>
-          <input id="prenom" name="prenom" [(ngModel)]="prenom"  type="text" class="form-control">
+          <input id="prenom" name="rue" [(ngModel)]="candidat.rue"  type="text" class="form-control">
       </div>
 
       </div>
