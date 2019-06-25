@@ -9,14 +9,14 @@ export class CandidatService {
     id: 1,
     nom: 'tarik',
     prenom: 'bouhjar',
-    sex: 'h',
+    sex: 'h'
 
   },
   {
     id: 2,
     nom: 'tarik',
     prenom: 'bouhjar',
-    sex: 'h',
+    sex: 'h'
 
   }];
 
@@ -24,7 +24,7 @@ export class CandidatService {
     return this.listCandidats;
   }
   getCandidat(id: Number): Candidat {
-    return this.listCandidats.find(c=>c.id===id);
+    return this.listCandidats.find(c => c.id === id);
   }
   save(candidat: Candidat): void {
     this.listCandidats.push(candidat);

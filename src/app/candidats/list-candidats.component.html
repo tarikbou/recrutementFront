@@ -1,6 +1,4 @@
 <div *ngFor="let candidat of candidats">
-  <div (click)="onClick(candidat.id)" class="pointerCursor">
-    <app-affiche-candidat [candidat]="candidat" #childComponent>
+    <app-affiche-candidat [candidat]="candidat" >
     </app-affiche-candidat>
-  </div>
 </div>

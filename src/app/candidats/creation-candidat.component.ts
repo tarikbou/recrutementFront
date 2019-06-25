@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Candidat } from "../models/candidat.model";
 import { CandidatService } from "./candidat.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -12,23 +12,35 @@ import { Router } from "@angular/router";
 })
 export class CreationCandidatComponent implements OnInit {
   @ViewChild('candidatForm') public creatCandidatForm: NgForm;
-  candidat: Candidat = {
-    nom: null,
-    prenom: null,
-    sex: null,
-    numeroAdresse: null,
-    rue: null,
-    ville: null,
-    paye: null
-  };
-  constructor(private _candidatService: CandidatService, private _router: Router) { }
+  candidat: Candidat ;
+  constructor(private _candidatService: CandidatService, private _router: Router, private _route :ActivatedRoute) { }
 
   ngOnInit() {
+    this._route.paramMap.subscribe(parametreMap => {
+      const id=+parametreMap.get('id');
+      this.getCandidat(id);
+    });
 
   }
   saveCandidat(): void {
-    this._candidatService.save(this.candidat);
+    const nouveauCandidat: Candidat = Object.assign({}, this.candidat);
+    this._candidatService.save(nouveauCandidat);
+    this.creatCandidatForm.reset();
     this._router.navigate(['list']);
+  }
+  getCandidat(id:number){
+    if(id===0)
+      {
+        this.candidat={
+          id: null,
+          nom: null,
+          prenom: null,
+          sex: null
+        };
+      }
+      else{
+        this.candidat=  Object.assign({},this._candidatService.getCandidat(id));
+      }
   }
 
 }

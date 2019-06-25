@@ -16,7 +16,7 @@ import { CandidatDetailsComponent } from './candidats/candidat-details.component
 const appRoutes: Routes = [
   { path: 'list', component: ListCandidatsComponent },
   {
-    path: 'creation',
+    path: 'modifier/:id',
     component: CreationCandidatComponent,
     canDeactivate: [CreateCandidatCanDeactivateGuardService]
   },

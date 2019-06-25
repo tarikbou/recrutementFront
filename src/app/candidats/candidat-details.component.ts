@@ -9,14 +9,19 @@ import { Candidat } from '../models/candidat.model';
   styleUrls: ['./candidat-details.component.css']
 })
 export class CandidatDetailsComponent implements OnInit {
+  private _id: number;
   candidat: Candidat;
 
   constructor(private _route: ActivatedRoute,
     private _candidatService: CandidatService) { }
 
   ngOnInit() {
-    const id = + this._route.snapshot.paramMap.get('id'); 
-    this.candidat=this._candidatService.getCandidat(id);
+
+    this._route.paramMap.subscribe(params => {
+    this._id = +params.get('id');
+      this.candidat = this._candidatService.getCandidat(this._id);
+    });
+
 
   }
 

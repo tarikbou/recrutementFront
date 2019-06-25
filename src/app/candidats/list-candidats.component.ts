@@ -18,8 +18,6 @@ export class ListCandidatsComponent implements OnInit {
   ngOnInit() {
     this.candidats = this._candidatService.getCandidats();
   }
-  onClick(candidatId: Number){
-    this._router.navigate(['/candidats',candidatId]);
-  }
+
 
 }
