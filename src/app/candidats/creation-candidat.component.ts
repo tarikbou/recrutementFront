@@ -24,9 +24,14 @@ export class CreationCandidatComponent implements OnInit {
   }
   saveCandidat(): void {
     const nouveauCandidat: Candidat = Object.assign({}, this.candidat);
-    this._candidatService.save(nouveauCandidat);
-    this.creatCandidatForm.reset();
-    this._router.navigate(['list']);
+    this._candidatService.saveCandidat(nouveauCandidat).subscribe(
+      (data:Candidat)=>{
+        console.log(data);
+        this.creatCandidatForm.reset();
+        this._router.navigate(['list']);
+      }
+    );
+   
   }
   getCandidat(id:number){
     if(id===0)
@@ -39,7 +44,9 @@ export class CreationCandidatComponent implements OnInit {
         };
       }
       else{
-        this.candidat=  Object.assign({},this._candidatService.getCandidat(id));
+       this._candidatService.getCandidat(id).subscribe((data:Candidat)=>{
+         this.candidat=data;
+       });
       }
   }
 

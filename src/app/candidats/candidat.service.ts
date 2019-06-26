@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Candidat } from '../models/candidat.model';
-import { c } from '@angular/core/src/render3';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CandidatService {
+  url='http://localhost:8080/candidats';
+ // headers :HttpHeaders=new HttpHeaders({ 'Content-type': 'application/json' });
+  constructor(private httpClient: HttpClient) { };
 
-  private listCandidats: Candidat[] = [{
-    id: 1,
-    nom: 'tarik',
-    prenom: 'bouhjar',
-    sex: 'h'
-
-  },
-  {
-    id: 2,
-    nom: 'tarik',
-    prenom: 'bouhjar',
-    sex: 'h'
-
-  }];
-
-  getCandidats(): Candidat[] {
-    return this.listCandidats;
+  getCandidats(): Observable<Candidat[]> {
+    return this.httpClient.get<Candidat[]>(this.url);
   }
-  getCandidat(id: Number): Candidat {
-    return this.listCandidats.find(c => c.id === id);
+  getCandidat(id: Number): Observable<Candidat> {
+    return this.httpClient.get<Candidat>(`${this.url}/${id}`);
   }
-  save(candidat: Candidat): void {
-    this.listCandidats.push(candidat);
+  saveCandidat(candidat: Candidat): Observable<Candidat> {
+    
+      return this.httpClient.post<Candidat>(this.url, candidat,
+        { headers: new HttpHeaders({ 'Content-type': 'application/json' }) })
 
+  }
+  updateCandidat(candidat: Candidat): Observable<void> {
+    
+      return this.httpClient.put<void>(`${this.url}/${candidat.id}`, candidat,
+        { headers: new HttpHeaders({ 'Content-type': 'application/json' }) });
+
+  }
+  deleteCandidat(id: Number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
 
 }

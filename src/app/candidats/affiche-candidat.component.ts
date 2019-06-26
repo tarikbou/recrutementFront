@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Candidat } from '../models/candidat.model';
 import { Router } from '@angular/router';
+import { CandidatService } from './candidat.service';
 
 @Component({
   selector: 'app-affiche-candidat',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AfficheCandidatComponent implements OnInit {
   @Input() candidat: Candidat;
-  constructor(private _router:Router) { }
+  constructor(private _router:Router,private _candidatService:CandidatService ) { }
 
   ngOnInit() {
   }
@@ -19,8 +20,10 @@ export class AfficheCandidatComponent implements OnInit {
   modifierCandidat(){
     this._router.navigate(['/modifier',this.candidat.id]);
   }
-  supprimerCandidat(){
-
+  supprimerCandidat(id:Number){
+    this._candidatService.deleteCandidat(id).subscribe();
+    this._router.navigate(['/list']);
+  
   }
 
 }

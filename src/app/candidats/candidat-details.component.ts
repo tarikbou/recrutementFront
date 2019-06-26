@@ -19,7 +19,9 @@ export class CandidatDetailsComponent implements OnInit {
 
     this._route.paramMap.subscribe(params => {
     this._id = +params.get('id');
-      this.candidat = this._candidatService.getCandidat(this._id);
+      this._candidatService.getCandidat(this._id).subscribe((data:Candidat)=>{
+        this.candidat = data;
+      });
     });
 
 
