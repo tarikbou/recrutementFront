@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CandidatService } from './candidat.service';
 import { Candidat } from '../models/candidat.model';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-candidat-details',
@@ -24,6 +25,13 @@ export class CandidatDetailsComponent implements OnInit {
       });
     });
 
+
+  }
+  downloadCV(id:Number){
+    console.log("downloadcv");
+    this._candidatService.downloadCV(id).subscribe(data=>{
+      FileSaver.saveAs(data,"CV_"+this.candidat.nom+"_"+this.candidat.prenom+".docx")
+    });
 
   }
 

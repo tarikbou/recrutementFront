@@ -36,6 +36,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    
     RouterModule.forRoot(appRoutes)
   ],
   providers: [CandidatService, CreateCandidatCanDeactivateGuardService],
