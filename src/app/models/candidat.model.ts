@@ -5,8 +5,9 @@ export class Candidat{
 	nom:string;
 	prenom:string;
 	sex:string;
+	
     
-	/*numeroAdresse:number;
+	numeroAdresse:number;
 	rue:string;
 	ville:string;
 	paye:string;

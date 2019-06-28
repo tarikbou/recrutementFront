@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Candidat } from '../models/candidat.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
 
 @Injectable()
 export class CandidatService {
@@ -33,7 +32,7 @@ export class CandidatService {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
   downloadCV(id:Number){
-     //this.httpClient.get <Blob>(`${this.url}/${id}/${this.pathDownloadCV}`);
+    
      return this.httpClient.get(`${this.url}/${id}/${this.pathDownloadCV}`,{ responseType: 'blob' });
   }
 

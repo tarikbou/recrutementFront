@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-xs-6">
-          {{candidat.numeroAdresse}} , {{candidat.rue}} , {{candidat.ville}} ,{{candidat.paye}}
+            Numero:   {{candidat.numeroAdresse}} ,rue : {{candidat.rue}} ,ville : {{candidat.ville}} ,paye :{{candidat.paye}}
         </div>
       </div>
       <div class="row">
@@ -68,7 +68,7 @@
       </div>
       <div class="panel-footer">
 <button class="btn btn-primary" routerLink="/list">retour a la list  </button>
-
+<button class="btn btn-primary" (click)="downloadCV(candidat.id)">Download CV  </button>
       </div>
-      <button class="btn btn-primary" (click)="downloadCV(candidat.id)">Download CV  </button>
+     
     </div>
